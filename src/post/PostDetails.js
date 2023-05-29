@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
+import { apiUrl } from '../constant.js';
 const PostDetail = () => {
   const { postId } = useParams();
   const [commentsdata, setCommentsData] = useState(null);
@@ -19,7 +19,9 @@ const PostDetail = () => {
         },
       };
       axios
-        .delete(`https://localhost:44320/Comments/deleteComment/${id}`, config)
+        .delete(
+          `${apiUrl}/Comments/deleteComment/${id}`,
+           config)
         .then((res) => {
           alert("Removed successfully.");
           window.location.reload();
@@ -36,7 +38,9 @@ const PostDetail = () => {
       },
     };
     axios
-      .get(`https://localhost:44320/Posts/getPost/${postId}`, config)
+      .get(
+        `${apiUrl}/Posts/getPost/${postId}`,
+         config)
       .then((x) => {
         setPostData(x.data[0]);
       });

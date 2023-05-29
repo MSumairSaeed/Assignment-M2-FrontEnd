@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { apiUrl } from './constant.js';
 
 const Login = () => {
   const [email, emailchange] = useState("");
@@ -11,8 +12,10 @@ const Login = () => {
   const handlesubmit = (e) => {
     e.preventDefault();
     const userData = { email, password };
-    axios
-      .post("https://localhost:44320/Auth/Login", {
+    axios    
+      .post(
+        `${apiUrl}/Auth/Login`, 
+        {
         email: userData.email,
         password: userData.password,
       })

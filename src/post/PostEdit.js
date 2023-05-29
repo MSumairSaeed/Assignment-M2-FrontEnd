@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-
+import { apiUrl } from '../constant.js';
 const PostEdit = () => {
   const {postId}  = useParams();
   const location = useLocation();
@@ -12,7 +12,9 @@ const PostEdit = () => {
       },
     };
     axios
-      .get(`https://localhost:44320/Posts/getPost/${postId}`, config)
+      .get(
+        `${apiUrl}/Posts/getPost/${postId}`,
+         config)
       .then((x) => {
         namechange(x.data[0].name);
       });
@@ -31,7 +33,7 @@ const PostEdit = () => {
     };
     axios
       .patch(
-        `https://localhost:44320/Posts/updatePost/${postId}`,
+        `${apiUrl}/Posts/updatePost/${postId}`,
         { name: name },
         config
       )

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { apiUrl } from '../constant.js';
 
 const PostListing = () => {
   const [postdata, setPostData] = useState(null);
@@ -20,7 +21,9 @@ const PostListing = () => {
         },
       };
       axios
-        .delete(`https://localhost:44320/Posts/deletePost/${id}`, config)
+        .delete(
+          `${apiUrl}/Posts/deletePost/${id}`,
+           config)
         .then((res) => {
           alert("Removed successfully.");
           window.location.reload();
@@ -36,7 +39,9 @@ const PostListing = () => {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
     };
-    axios.get("https://localhost:44320/Posts/GetAllPosts", config).then((x) => {
+    axios.get(
+      `${apiUrl}/Posts/GetAllPosts`,
+       config).then((x) => {
       setPostData(x.data);
     });
   }, []);

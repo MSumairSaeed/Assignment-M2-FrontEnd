@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-
+import { apiUrl } from './constant.js';
 function Signup() {
   const history = useNavigate();
 
@@ -12,7 +12,9 @@ function Signup() {
   const handlesubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://localhost:44320/Auth/Signup", {
+      .post(
+        `${apiUrl}/Auth/Signup`,
+         {
         name: name,
         email: email,
         password: password,

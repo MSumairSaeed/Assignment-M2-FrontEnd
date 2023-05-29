@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { apiUrl } from '../constant.js';
+
 
 const PostCreate = () => {
   const [id, idchange] = useState("");
@@ -21,7 +23,7 @@ const PostCreate = () => {
     };
     axios
       .post(
-        "https://localhost:44320/Posts/addNewPost",
+        `${apiUrl}/Posts/addNewPost`,
         { name: name, comments: [] },
         config
       )

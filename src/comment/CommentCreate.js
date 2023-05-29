@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
+import { apiUrl } from '../constant.js';
 const CommentCreate = () => {
   const { postId } = useParams();
   const [id, idchange] = useState("");
@@ -17,7 +17,7 @@ const CommentCreate = () => {
     };
     axios
       .post(
-        "https://localhost:44320/Comments/addNewComment",
+        `${apiUrl}/Comments/addNewComment`,
         { title: title, content: content, postId: postId },
         config
       )

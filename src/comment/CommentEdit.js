@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { apiUrl } from '../constant.js';
 
 const CommentEdit = () => {
   const {commentId}  = useParams();
@@ -13,7 +14,9 @@ const CommentEdit = () => {
       },
     };
     axios
-      .get(`https://localhost:44320/Comments/getComment/${commentId}`, config)
+      .get(
+        `${apiUrl}/Comments/getComment/${commentId}`,
+         config)
       .then((x) => {
         setTitle(x.data.title);
         setContent(x.data.content);
@@ -35,7 +38,7 @@ const CommentEdit = () => {
     };
     axios
       .patch(
-        `https://localhost:44320/Comments/updateComment/${commentId}`,
+        `${apiUrl}/Comments/updateComment/${commentId}`,
         { title: title,
         content: content},
         config
